@@ -33,13 +33,6 @@ Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .CreateLogger();
 
-
-
-// var jsonOptions = new JsonSerializerOptions
-// {
-//     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-// };
-
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog();
 
@@ -64,7 +57,7 @@ app.UseSerilogRequestLogging();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-   c.SwaggerEndpoint("/swagger/v1/swagger.json", "PizzaStore API V1");
+   c.SwaggerEndpoint("/swagger/v1/swagger.json", "DotNet Testing API V1");
 });
     
 app.MapGet("/", () => "Hello World!");
@@ -93,7 +86,7 @@ app.MapGet("/parse", async (HttpContext context, string dateInput) =>
 
             var responsePretty = JsonSerializer.Serialize(apiResponse, new JsonSerializerOptions { WriteIndented = true });
             Log.Information("Response: {responsePretty}", responsePretty);
-            // Thread.Sleep(1000);
+            Thread.Sleep(1000);
             return apiResponse;
         }
     }
